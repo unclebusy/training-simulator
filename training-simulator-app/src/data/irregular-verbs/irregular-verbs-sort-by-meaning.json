@@ -2,8 +2,8 @@
   "groups": [
     {
       "id": "v1_v2_v3_same",
-      "title": "V1 = V2 = V3",
-      "description": "Все три формы одинаковые",
+      "titleEn": "V1 = V2 = V3",
+      "titleRu": "Все три формы одинаковые",
       "verbs": [
         {
           "russian": "класть",
@@ -55,8 +55,8 @@
 
     {
       "id": "v2_v3_same",
-      "title": "V2 = V3",
-      "description": "Вторая и третья формы одинаковые",
+      "titleEn": "V2 = V3",
+      "titleRu": "Вторая и третья формы одинаковые",
       "verbs": [
         {
           "russian": "покупать",
@@ -117,8 +117,8 @@
 
     {
       "id": "v1_v3_same",
-      "title": "V1 = V3",
-      "description": "Первая и третья формы одинаковые",
+      "titleEn": "V1 = V3",
+      "titleRu": "Первая и третья формы одинаковые",
       "verbs": [
         {
           "russian": "бежать",
@@ -143,8 +143,8 @@
 
     {
       "id": "all_different",
-      "title": "V1 ≠ V2 ≠ V3",
-      "description": "Все формы разные",
+      "titleEn": "V1 ≠ V2 ≠ V3",
+      "titleRu": "Все формы разные",
       "verbs": [
         {
           "russian": "идти",

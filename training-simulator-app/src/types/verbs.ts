@@ -1,11 +1,11 @@
 export interface Verb {
   russian: string
-  baseV1: string
-  pastV2: string
-  ppV3: string
-  transcriptionV1: string
-  transcriptionV2: string
-  transcriptionV3: string
+  'base V1': string
+  'past V2': string
+  'pp V3': string
+  'transcription V1': string
+  'transcription V2': string
+  'transcription V3': string
 }
 
 export interface VerbGroup {

@@ -1,4 +1,4 @@
-import { FormControlLabel, Switch, Typography } from '@mui/material'
+import { FormControl, Select, MenuItem, Typography } from '@mui/material'
 
 interface FileSelectorProps {
   selectedFile: string
@@ -6,20 +6,19 @@ interface FileSelectorProps {
 }
 
 const FileSelector = ({ selectedFile, onFileChange }: FileSelectorProps) => {
-  const isGroupsMode = selectedFile === 'groups'
-  
   return (
     <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-      <Typography variant="body1">Sorted:</Typography>
-      <FormControlLabel
-        control={
-          <Switch
-            checked={isGroupsMode}
-            onChange={(e) => onFileChange(e.target.checked ? 'groups' : 'meaning')}
-          />
-        }
-        label={isGroupsMode ? 'by Groups' : 'by Meaning'}
-      />
+      <Typography variant="body1">Группирвоать:</Typography>
+      <FormControl variant="outlined" size="small">
+        <Select
+          value={selectedFile}
+          onChange={(e) => onFileChange(e.target.value)}
+          style={{ minWidth: 150 }}
+        >
+          <MenuItem value="meaning">По смыслу</MenuItem>
+          <MenuItem value="groups">По группам</MenuItem>
+        </Select>
+      </FormControl>
     </div>
   )
 }
