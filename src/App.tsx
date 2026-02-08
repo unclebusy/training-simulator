@@ -23,16 +23,16 @@ import MenuIcon from '@mui/icons-material/Menu'
 import FileSelector from './components/FileSelector'
 import { loadVerbsData } from './utils/loadData'
 
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: '#1976d2',
-    },
-    secondary: {
-      main: '#dc004e',
-    },
-  },
-})
+// const theme = createTheme({
+//   palette: {
+//     primary: {
+//       main: '#1976d2',
+//     },
+//     secondary: {
+//       main: '#dc004e',
+//     },
+//   },
+// })
 
 function App() {
   const theme = useTheme()
@@ -346,18 +346,20 @@ function App() {
             </Button>
           ) : showHintButton ? (
             <Box sx={{ display: 'flex', gap: 2, mt: 4 }}>
-              <Button
-                variant="outlined"
-                onClick={handleClear}
-                sx={{ flex: 1 }}
-                color="error"
-              >
-                Очистить
-              </Button>
+              {showClearButton && (
+                <Button
+                  variant="outlined"
+                  onClick={handleClear}
+                  sx={{ flex: 1 }}
+                  color="error"
+                >
+                  Очистить
+                </Button>
+              )}
               <Button
                 variant="outlined"
                 onClick={handleShowHint}
-                sx={{ flex: 1 }}
+                sx={{ flex: showClearButton ? 1 : 'auto' }}
               >
                 Подсказка
               </Button>
