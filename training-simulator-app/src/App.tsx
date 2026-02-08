@@ -13,8 +13,13 @@ import {
   Button,
   Alert,
   Switch,
-  FormControlLabel
+  FormControlLabel,
+  Drawer,
+  IconButton,
+  useTheme,
+  useMediaQuery
 } from '@mui/material'
+import MenuIcon from '@mui/icons-material/Menu'
 import FileSelector from './components/FileSelector'
 import { loadVerbsData } from './utils/loadData'
 
@@ -30,6 +35,10 @@ const theme = createTheme({
 })
 
 function App() {
+  const theme = useTheme()
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'))
+  const [drawerOpen, setDrawerOpen] = useState(false)
+  
   const [selectedFile, setSelectedFile] = useState<'meaning' | 'groups'>('meaning')
   const [selectedGroupIndex, setSelectedGroupIndex] = useState(0)
   const [currentVerbIndex, setCurrentVerbIndex] = useState(0)
@@ -80,6 +89,7 @@ function App() {
         setV2Input(currentVerb['past V2'])
         setV3Input(currentVerb['pp V3'])
         setShowTranscription(true)
+        setShowNextButton(true)
         setShowHintButton(false)
         setShowClearButton(false)
         setUsedHint(true)
@@ -156,6 +166,57 @@ function App() {
     }
   }
 
+  const SettingsContent = () => (
+    <Box sx={{ p: 2, display: 'flex', flexDirection: 'column', gap: 2 }}>
+      <FileSelector
+        selectedFile={selectedFile}
+        onFileChange={(file) => {
+          setSelectedFile(file as 'meaning' | 'groups')
+          setSelectedGroupIndex(0)
+          setCurrentVerbIndex(isRandomOrder ? getRandomVerbIndex() : 0)
+        }}
+      />
+
+      {verbsData.groups.length > 0 && (
+        <>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <Typography variant="body1">Категория:</Typography>
+            <FormControl variant="outlined" size="small" sx={{ width: 350 }}>
+              <Select
+                value={selectedGroupIndex}
+                onChange={(e) => {
+                  setSelectedGroupIndex(Number(e.target.value))
+                  setCurrentVerbIndex(isRandomOrder ? getRandomVerbIndex() : 0)
+                }}
+                fullWidth
+              >
+                {verbsData.groups.map((group, index) => (
+                  <MenuItem key={group.id} value={index}>
+                    {group.titleRu}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          </div>
+
+          <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
+            <Typography variant="body1" sx={{ mr: 1 }}>
+              Случайный порядок
+            </Typography>
+            <Switch
+              checked={isRandomOrder}
+              onChange={(e) => {
+                setIsRandomOrder(e.target.checked)
+                setCurrentVerbIndex(e.target.checked ? getRandomVerbIndex() : 0)
+              }}
+              color="primary"
+            />
+          </div>
+        </>
+      )}
+    </Box>
+  )
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -167,84 +228,46 @@ function App() {
           right: 0,
           bottom: 0,
           display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'flex-start',
-          justifyContent: 'flex-start',
-          gap: 3,
-          textAlign: 'left',
-          p: 2
+          flexDirection: isMobile ? 'column' : 'row',
+          gap: 2,
+          p: 2,
+          overflowY: 'auto'
         }}
       >
-        <Typography
-          component="h1"
-          sx={{
-            fontSize: { xs: '1.5rem', sm: '2rem', md: '2rem', lg: '2rem' },
-            fontWeight: 'bold',
-            width: '100%',
-            textAlign: 'center'
-          }}
-        >
-          Irregular Verbs Simulator
-        </Typography>
+        {/* Настройки для десктопа */}
+        {!isMobile && (
+          <Paper sx={{ p: 2, minWidth: 250, maxWidth: 300 }}>
+            <SettingsContent />
+          </Paper>
+        )}
 
-        <Paper sx={{ p: 3, display: 'flex', flexDirection: 'column', gap: 2 }}>
-          <FileSelector
-            selectedFile={selectedFile}
-            onFileChange={(file) => {
-              setSelectedFile(file as 'meaning' | 'groups')
-              setSelectedGroupIndex(0)
-              setCurrentVerbIndex(isRandomOrder ? getRandomVerbIndex() : 0)
-            }}
-          />
+        {/* Кнопка меню для мобильных */}
+        {isMobile && (
+          <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
+            <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
+              Irregular Verbs
+            </Typography>
+            <IconButton onClick={() => setDrawerOpen(true)}>
+              <MenuIcon />
+            </IconButton>
+          </Box>
+        )}
 
-          {verbsData.groups.length > 0 && (
-            <>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <Typography variant="body1">Types:</Typography>
-                <FormControl variant="outlined" size="small" sx={{ minWidth: 150 }}>
-                  <Select
-                    value={selectedGroupIndex}
-                    onChange={(e) => {
-                      setSelectedGroupIndex(Number(e.target.value))
-                      setCurrentVerbIndex(isRandomOrder ? getRandomVerbIndex() : 0)
-                    }}
-                  >
-                    {verbsData.groups.map((group, index) => (
-                      <MenuItem key={group.id} value={index}>
-                        {group.titleRu}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
-              </div>
-
-              <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
-                <Typography variant="body1" sx={{ mr: 1 }}>
-                  Случайный порядок
-                </Typography>
-                <Switch
-                  checked={isRandomOrder}
-                  onChange={(e) => {
-                    setIsRandomOrder(e.target.checked)
-                    setCurrentVerbIndex(e.target.checked ? getRandomVerbIndex() : 0)
-                  }}
-                  color="primary"
-                />
-              </div>
-            </>
+        {/* Основной контент */}
+        <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 2 }}>
+          {!isMobile && (
+            <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
+              Irregular Verbs
+            </Typography>
           )}
-        </Paper>
 
         <Paper sx={{ p: 3 }}>
-          <Typography variant="h6" sx={{ fontWeight: 'bold', mb: 1 }}>
-            Статистика
-          </Typography>
           <Typography variant="body1">
             Правильных ответов: <span style={{ fontWeight: 'bold', color: '#4caf50' }}>{correctAnswersCount}</span>
           </Typography>
         </Paper>
 
-        <Paper sx={{ p: 3, minWidth: 300 }}>
+        <Paper sx={{ p: 3, minWidth: 150 }}>
           <Typography
             variant="h5"
             sx={{
@@ -395,6 +418,18 @@ function App() {
 
 
         </Box>
+
+        {/* Drawer для мобильных */}
+        <Drawer
+          anchor="left"
+          open={drawerOpen}
+          onClose={() => setDrawerOpen(false)}
+        >
+          <Box sx={{ width: 280 }}>
+            <SettingsContent />
+          </Box>
+        </Drawer>
+      </Box>
     </ThemeProvider>
   )
 }
