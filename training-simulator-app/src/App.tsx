@@ -11,7 +11,9 @@ import {
   Paper,
   TextField,
   Button,
-  Alert
+  Alert,
+  Switch,
+  FormControlLabel
 } from '@mui/material'
 import FileSelector from './components/FileSelector'
 import { loadVerbsData } from './utils/loadData'
@@ -40,9 +42,20 @@ function App() {
   const [showNextButton, setShowNextButton] = useState(false)
   const [showHintButton, setShowHintButton] = useState(false)
   const [showClearButton, setShowClearButton] = useState(false)
+  const [isRandomOrder, setIsRandomOrder] = useState(false)
+  const [correctAnswersCount, setCorrectAnswersCount] = useState(0)
+  const [usedHint, setUsedHint] = useState(false)
   const verbsData = loadVerbsData(selectedFile)
 
   const isCheckButtonDisabled = !v1Input.trim() || !v2Input.trim() || !v3Input.trim()
+
+  const getRandomVerbIndex = () => {
+    if (verbsData.groups.length > 0 && selectedGroupIndex >= 0) {
+      const groupLength = verbsData.groups[selectedGroupIndex].verbs.length
+      return Math.floor(Math.random() * groupLength)
+    }
+    return 0
+  }
 
   const handleClear = () => {
     setV1Input('')
@@ -53,6 +66,10 @@ function App() {
     setShowTranscription(false)
     setShowHintButton(false)
     setShowClearButton(false)
+    setUsedHint(false)
+    if (isRandomOrder) {
+      setCurrentVerbIndex(getRandomVerbIndex())
+    }
   }
 
   const handleShowHintEarly = () => {
@@ -65,6 +82,7 @@ function App() {
         setShowTranscription(true)
         setShowHintButton(false)
         setShowClearButton(false)
+        setUsedHint(true)
       }
     }
   }
@@ -80,7 +98,8 @@ function App() {
 
         setIsCorrect(correct)
         setShowResult(true)
-        if (correct) {
+        if (correct && !usedHint) {
+          setCorrectAnswersCount(prev => prev + 1)
           setShowNextButton(true)
           setShowHintButton(false)
           setShowClearButton(false)
@@ -105,25 +124,35 @@ function App() {
         setShowNextButton(true)
         setShowHintButton(false)
         setShowClearButton(false)
+        setUsedHint(true)
       }
     }
   }
 
   const handleNext = () => {
     if (verbsData.groups.length > 0 && selectedGroupIndex >= 0) {
-      const nextIndex = currentVerbIndex + 1
-      if (nextIndex < verbsData.groups[selectedGroupIndex].verbs.length) {
-        setCurrentVerbIndex(nextIndex)
-        setV1Input('')
-        setV2Input('')
-        setV3Input('')
-        setShowResult(false)
-        setIsCorrect(false)
-        setShowTranscription(false)
-        setShowNextButton(false)
-        setShowHintButton(false)
-        setShowClearButton(false)
+      let nextIndex: number
+      
+      if (isRandomOrder) {
+        nextIndex = getRandomVerbIndex()
+      } else {
+        nextIndex = currentVerbIndex + 1
+        if (nextIndex >= verbsData.groups[selectedGroupIndex].verbs.length) {
+          nextIndex = 0 // Начать с начала если достигли конца
+        }
       }
+      
+      setCurrentVerbIndex(nextIndex)
+      setV1Input('')
+      setV2Input('')
+      setV3Input('')
+      setShowResult(false)
+      setIsCorrect(false)
+      setShowTranscription(false)
+      setShowNextButton(false)
+      setShowHintButton(false)
+      setShowClearButton(false)
+      setUsedHint(false)
     }
   }
 
@@ -146,34 +175,39 @@ function App() {
           p: 2
         }}
       >
-          <Typography
-            component="h1"
-            sx={{
-              fontSize: { xs: '1.5rem', sm: '2rem', md: '2rem', lg: '2rem' },
-              fontWeight: 'bold',
-              width: '100%',
-              textAlign: 'center'
+        <Typography
+          component="h1"
+          sx={{
+            fontSize: { xs: '1.5rem', sm: '2rem', md: '2rem', lg: '2rem' },
+            fontWeight: 'bold',
+            width: '100%',
+            textAlign: 'center'
+          }}
+        >
+          Irregular Verbs Simulator
+        </Typography>
+
+        <Paper sx={{ p: 3, display: 'flex', flexDirection: 'column', gap: 2 }}>
+          <FileSelector
+            selectedFile={selectedFile}
+            onFileChange={(file) => {
+              setSelectedFile(file as 'meaning' | 'groups')
+              setSelectedGroupIndex(0)
+              setCurrentVerbIndex(isRandomOrder ? getRandomVerbIndex() : 0)
             }}
-          >
-            Irregular Verbs Simulator
-          </Typography>
+          />
 
-          <Paper sx={{ p: 3, display: 'flex', flexDirection: 'column', gap: 2 }}>
-            <FileSelector
-              selectedFile={selectedFile}
-              onFileChange={(file) => {
-                setSelectedFile(file as 'meaning' | 'groups')
-                setSelectedGroupIndex(0)
-              }}
-            />
-
-            {verbsData.groups.length > 0 && (
+          {verbsData.groups.length > 0 && (
+            <>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <Typography variant="body1">Types:</Typography>
                 <FormControl variant="outlined" size="small" sx={{ minWidth: 150 }}>
                   <Select
                     value={selectedGroupIndex}
-                    onChange={(e) => setSelectedGroupIndex(Number(e.target.value))}
+                    onChange={(e) => {
+                      setSelectedGroupIndex(Number(e.target.value))
+                      setCurrentVerbIndex(isRandomOrder ? getRandomVerbIndex() : 0)
+                    }}
                   >
                     {verbsData.groups.map((group, index) => (
                       <MenuItem key={group.id} value={index}>
@@ -183,8 +217,32 @@ function App() {
                   </Select>
                 </FormControl>
               </div>
-            )}
-          </Paper>
+
+              <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
+                <Typography variant="body1" sx={{ mr: 1 }}>
+                  Случайный порядок
+                </Typography>
+                <Switch
+                  checked={isRandomOrder}
+                  onChange={(e) => {
+                    setIsRandomOrder(e.target.checked)
+                    setCurrentVerbIndex(e.target.checked ? getRandomVerbIndex() : 0)
+                  }}
+                  color="primary"
+                />
+              </div>
+            </>
+          )}
+        </Paper>
+
+        <Paper sx={{ p: 3 }}>
+          <Typography variant="h6" sx={{ fontWeight: 'bold', mb: 1 }}>
+            Статистика
+          </Typography>
+          <Typography variant="body1">
+            Правильных ответов: <span style={{ fontWeight: 'bold', color: '#4caf50' }}>{correctAnswersCount}</span>
+          </Typography>
+        </Paper>
 
         <Paper sx={{ p: 3, minWidth: 300 }}>
           <Typography
