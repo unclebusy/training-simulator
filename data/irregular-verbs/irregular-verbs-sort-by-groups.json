@@ -1,0 +1,197 @@
+{
+  "groups": [
+    {
+      "id": "movement",
+      "titleEn": "Movement",
+      "titleRu": "Движение и перемещение",
+      "verbs": [
+        {
+          "russian": "идти, ехать",
+          "base V1": "go",
+          "past V2": "went",
+          "pp V3": "gone",
+          "transcription V1": "гоу",
+          "transcription V2": "уэнт",
+          "transcription V3": "гон"
+        },
+        {
+          "russian": "приходить",
+          "base V1": "come",
+          "past V2": "came",
+          "pp V3": "come",
+          "transcription V1": "кам",
+          "transcription V2": "кэйм",
+          "transcription V3": "кам"
+        },
+        {
+          "russian": "бежать",
+          "base V1": "run",
+          "past V2": "ran",
+          "pp V3": "run",
+          "transcription V1": "ран",
+          "transcription V2": "рэн",
+          "transcription V3": "ран"
+        },
+        {
+          "russian": "ехать верхом",
+          "base V1": "ride",
+          "past V2": "rode",
+          "pp V3": "ridden",
+          "transcription V1": "райд",
+          "transcription V2": "роуд",
+          "transcription V3": "ридэн"
+        },
+        {
+          "russian": "водить (машину)",
+          "base V1": "drive",
+          "past V2": "drove",
+          "pp V3": "driven",
+          "transcription V1": "драйв",
+          "transcription V2": "дроув",
+          "transcription V3": "дривэн"
+        }
+      ]
+    },
+
+    {
+      "id": "physical_actions",
+      "titleEn": "Physical actions",
+      "titleRu": "Физические действия",
+      "verbs": [
+        {
+          "russian": "делать",
+          "base V1": "do",
+          "past V2": "did",
+          "pp V3": "done",
+          "transcription V1": "ду",
+          "transcription V2": "дид",
+          "transcription V3": "дан"
+        },
+        {
+          "russian": "создавать",
+          "base V1": "make",
+          "past V2": "made",
+          "pp V3": "made",
+          "transcription V1": "мэйк",
+          "transcription V2": "мэйд",
+          "transcription V3": "мэйд"
+        },
+        {
+          "russian": "класть",
+          "base V1": "put",
+          "past V2": "put",
+          "pp V3": "put",
+          "transcription V1": "пут",
+          "transcription V2": "пут",
+          "transcription V3": "пут"
+        },
+        {
+          "russian": "держать",
+          "base V1": "hold",
+          "past V2": "held",
+          "pp V3": "held",
+          "transcription V1": "хоулд",
+          "transcription V2": "хелд",
+          "transcription V3": "хелд"
+        },
+        {
+          "russian": "ломать",
+          "base V1": "break",
+          "past V2": "broke",
+          "pp V3": "broken",
+          "transcription V1": "брэйк",
+          "transcription V2": "броук",
+          "transcription V3": "броукэн"
+        }
+      ]
+    },
+
+    {
+      "id": "speech",
+      "titleEn": "Speech and communication",
+      "titleRu": "Речь и общение",
+      "verbs": [
+        {
+          "russian": "говорить, сказать",
+          "base V1": "say",
+          "past V2": "said",
+          "pp V3": "said",
+          "transcription V1": "сэй",
+          "transcription V2": "сэд",
+          "transcription V3": "сэд"
+        },
+        {
+          "russian": "рассказывать",
+          "base V1": "tell",
+          "past V2": "told",
+          "pp V3": "told",
+          "transcription V1": "тэл",
+          "transcription V2": "тоулд",
+          "transcription V3": "тоулд"
+        },
+        {
+          "russian": "говорить (язык)",
+          "base V1": "speak",
+          "past V2": "spoke",
+          "pp V3": "spoken",
+          "transcription V1": "спик",
+          "transcription V2": "споук",
+          "transcription V3": "споукэн"
+        },
+        {
+          "russian": "писать",
+          "base V1": "write",
+          "past V2": "wrote",
+          "pp V3": "written",
+          "transcription V1": "райт",
+          "transcription V2": "роут",
+          "transcription V3": "ритэн"
+        }
+      ]
+    },
+
+    {
+      "id": "money",
+      "titleEn": "Money and exchange",
+      "titleRu": "Деньги и обмен",
+      "verbs": [
+        {
+          "russian": "покупать",
+          "base V1": "buy",
+          "past V2": "bought",
+          "pp V3": "bought",
+          "transcription V1": "бай",
+          "transcription V2": "бот",
+          "transcription V3": "бот"
+        },
+        {
+          "russian": "продавать",
+          "base V1": "sell",
+          "past V2": "sold",
+          "pp V3": "sold",
+          "transcription V1": "сэл",
+          "transcription V2": "соулд",
+          "transcription V3": "соулд"
+        },
+        {
+          "russian": "платить",
+          "base V1": "pay",
+          "past V2": "paid",
+          "pp V3": "paid",
+          "transcription V1": "пэй",
+          "transcription V2": "пэйд",
+          "transcription V3": "пэйд"
+        },
+        {
+          "russian": "тратить",
+          "base V1": "spend",
+          "past V2": "spent",
+          "pp V3": "spent",
+          "transcription V1": "спэнд",
+          "transcription V2": "спэнт",
+          "transcription V3": "спэнт"
+        }
+      ]
+    }
+  ]
+}

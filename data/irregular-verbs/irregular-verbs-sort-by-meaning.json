@@ -1,0 +1,188 @@
+{
+  "groups": [
+    {
+      "id": "v1_v2_v3_same",
+      "title": "V1 = V2 = V3",
+      "description": "Все три формы одинаковые",
+      "verbs": [
+        {
+          "russian": "класть",
+          "base V1": "put",
+          "past V2": "put",
+          "pp V3": "put",
+          "transcription V1": "пут",
+          "transcription V2": "пут",
+          "transcription V3": "пут"
+        },
+        {
+          "russian": "резать",
+          "base V1": "cut",
+          "past V2": "cut",
+          "pp V3": "cut",
+          "transcription V1": "кат",
+          "transcription V2": "кат",
+          "transcription V3": "кат"
+        },
+        {
+          "russian": "ударять",
+          "base V1": "hit",
+          "past V2": "hit",
+          "pp V3": "hit",
+          "transcription V1": "хит",
+          "transcription V2": "хит",
+          "transcription V3": "хит"
+        },
+        {
+          "russian": "закрывать",
+          "base V1": "shut",
+          "past V2": "shut",
+          "pp V3": "shut",
+          "transcription V1": "шат",
+          "transcription V2": "шат",
+          "transcription V3": "шат"
+        },
+        {
+          "russian": "стоить",
+          "base V1": "cost",
+          "past V2": "cost",
+          "pp V3": "cost",
+          "transcription V1": "кост",
+          "transcription V2": "кост",
+          "transcription V3": "кост"
+        }
+      ]
+    },
+
+    {
+      "id": "v2_v3_same",
+      "title": "V2 = V3",
+      "description": "Вторая и третья формы одинаковые",
+      "verbs": [
+        {
+          "russian": "покупать",
+          "base V1": "buy",
+          "past V2": "bought",
+          "pp V3": "bought",
+          "transcription V1": "бай",
+          "transcription V2": "бот",
+          "transcription V3": "бот"
+        },
+        {
+          "russian": "приносить",
+          "base V1": "bring",
+          "past V2": "brought",
+          "pp V3": "brought",
+          "transcription V1": "бринг",
+          "transcription V2": "брот",
+          "transcription V3": "брот"
+        },
+        {
+          "russian": "ловить",
+          "base V1": "catch",
+          "past V2": "caught",
+          "pp V3": "caught",
+          "transcription V1": "кэтч",
+          "transcription V2": "кот",
+          "transcription V3": "кот"
+        },
+        {
+          "russian": "думать",
+          "base V1": "think",
+          "past V2": "thought",
+          "pp V3": "thought",
+          "transcription V1": "синк",
+          "transcription V2": "сот",
+          "transcription V3": "сот"
+        },
+        {
+          "russian": "платить",
+          "base V1": "pay",
+          "past V2": "paid",
+          "pp V3": "paid",
+          "transcription V1": "пэй",
+          "transcription V2": "пэйд",
+          "transcription V3": "пэйд"
+        },
+        {
+          "russian": "продавать",
+          "base V1": "sell",
+          "past V2": "sold",
+          "pp V3": "sold",
+          "transcription V1": "сэл",
+          "transcription V2": "соулд",
+          "transcription V3": "соулд"
+        }
+      ]
+    },
+
+    {
+      "id": "v1_v3_same",
+      "title": "V1 = V3",
+      "description": "Первая и третья формы одинаковые",
+      "verbs": [
+        {
+          "russian": "бежать",
+          "base V1": "run",
+          "past V2": "ran",
+          "pp V3": "run",
+          "transcription V1": "ран",
+          "transcription V2": "рэн",
+          "transcription V3": "ран"
+        },
+        {
+          "russian": "приходить",
+          "base V1": "come",
+          "past V2": "came",
+          "pp V3": "come",
+          "transcription V1": "кам",
+          "transcription V2": "кэйм",
+          "transcription V3": "кам"
+        }
+      ]
+    },
+
+    {
+      "id": "all_different",
+      "title": "V1 ≠ V2 ≠ V3",
+      "description": "Все формы разные",
+      "verbs": [
+        {
+          "russian": "идти",
+          "base V1": "go",
+          "past V2": "went",
+          "pp V3": "gone",
+          "transcription V1": "гоу",
+          "transcription V2": "уэнт",
+          "transcription V3": "гон"
+        },
+        {
+          "russian": "есть",
+          "base V1": "eat",
+          "past V2": "ate",
+          "pp V3": "eaten",
+          "transcription V1": "ит",
+          "transcription V2": "эйт",
+          "transcription V3": "итэн"
+        },
+        {
+          "russian": "пить",
+          "base V1": "drink",
+          "past V2": "drank",
+          "pp V3": "drunk",
+          "transcription V1": "дринк",
+          "transcription V2": "дрэнк",
+          "transcription V3": "дранк"
+        },
+        {
+          "russian": "писать",
+          "base V1": "write",
+          "past V2": "wrote",
+          "pp V3": "written",
+          "transcription V1": "райт",
+          "transcription V2": "роут",
+          "transcription V3": "ритэн"
+        }
+      ]
+    }
+  ]
+}
