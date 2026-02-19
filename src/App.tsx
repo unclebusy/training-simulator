@@ -37,7 +37,7 @@ function App() {
   const isMobile = useMediaQuery(theme.breakpoints.down('md'))
   const [drawerOpen, setDrawerOpen] = useState(false)
   
-  const [selectedFile, setSelectedFile] = useState<'meaning' | 'groups'>('meaning')
+  const [selectedFile, setSelectedFile] = useState<'meaning' | 'groups' | 'pages'>('pages')
   const [selectedGroupIndex, setSelectedGroupIndex] = useState(0)
   const [currentVerbIndex, setCurrentVerbIndex] = useState(0)
   const [v1Input, setV1Input] = useState('')
@@ -169,7 +169,7 @@ function App() {
       <FileSelector
         selectedFile={selectedFile}
         onFileChange={(file) => {
-          setSelectedFile(file as 'meaning' | 'groups')
+          setSelectedFile(file as 'meaning' | 'groups' | 'pages'  )
           setSelectedGroupIndex(0)
           setCurrentVerbIndex(isRandomOrder ? getRandomVerbIndex() : 0)
         }}

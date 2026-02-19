@@ -6,6 +6,7 @@ export interface Verb {
   'transcription V1': string
   'transcription V2': string
   'transcription V3': string
+  page?: number
 }
 
 export interface VerbGroup {

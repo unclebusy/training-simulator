@@ -15,6 +15,7 @@ const FileSelector = ({ selectedFile, onFileChange }: FileSelectorProps) => {
           onChange={(e) => onFileChange(e.target.value)}
           style={{ minWidth: 150 }}
         >
+          <MenuItem value="pages">По страницам</MenuItem>
           <MenuItem value="meaning">По смыслу</MenuItem>
           <MenuItem value="groups">По группам</MenuItem>
         </Select>
